@@ -20,4 +20,8 @@ from api.views import inicio
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', inicio.as_view(), name='index'),
+
 ]
+
+from django.contrib.staticfiles.urls import staticfiles_urlpatterns # new
+urlpatterns += staticfiles_urlpatterns() # new
