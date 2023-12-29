@@ -10,5 +10,11 @@ class inicio(APIView):
         return render(request, self.template_name)
     def post(self, request):
         return render(request, self.template_name)
-    
+
+class registro(APIView):
+    template_name="authentication-register.html"
+    def get(self, request):
+        return render(request, self.template_name)
+    def post(self, request):
+        return render(request, self.template_name)
     
