@@ -5,7 +5,7 @@ from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 class inicio(APIView):
-    template_name="index.html"
+    template_name="authentication-login.html"
     def get(self, request):
         return render(request, self.template_name)
     def post(self, request):
