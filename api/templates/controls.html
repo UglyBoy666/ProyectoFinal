@@ -7,6 +7,42 @@
     <title>Modernize Free</title>
     <link rel="shortcut icon" type="image/png" href="{% static 'images/logos/favicon.png' %}" />
     <link rel="stylesheet" href="{% static 'css/styles.min.css' %}" />
+    <style>
+      .container {
+        display: flex;
+        justify-content: space-around;
+        margin-top: 20px;
+      }
+      
+      .chart {
+        width: 100px;
+        height: 300px;
+        border: 1px solid #ccc;
+        position: relative;
+        margin-right: 20px;
+        border-radius: 5px;
+      }
+      
+      .cylinder {
+        background-color: #3498db;
+        width: 100%;
+        position: absolute;
+        bottom: 0;
+        transition: height 0.5s ease-in-out;
+      }
+      
+      .value {
+        text-align: center;
+        margin-top: 10px;
+      }
+      
+      .bar {
+        background-color: #3498db;
+        position: absolute;
+        bottom: 0;
+        transition: height 0.5s ease-in-out;
+      }
+    </style>
   </head>
 
   <body>
@@ -16,59 +52,132 @@
           <center>
             <h5 class="card-title fw-semibold mb-4">Controles</h5>
           </center>
-          <div class="row" style="justify-content: center;">
+          <div class="row" style="justify-content: center; align-items: center;">
             <div class="col-md-5">
-              <div class="card">
-                <div class="card-header">
-                  <center>Alarma Tinaco</center>
-                </div>
-                <button id="encendenrBtn" type="button" class="btn btn-outline-success m-2">Encender</button>
-                <button type="apagarBtn" class="btn btn-outline-danger m-2">Apagar</button>
-              </div>
-            </div>
-            <div class="col-md-5">
-              <div class="card">
-                <div class="card-header">
-                  <center>Seguridad de la tapa</center>
-                </div>
-                <button id="encendenrBtn" type="button" class="btn btn-outline-success m-2">Abierto</button>
-                <button type="apagarBtn" class="btn btn-outline-danger m-2">Cerrado</button>
-              </div>
-            </div>
-          </div>
-          <div class="row">
-            <div class="col-md-5">
-              <div class="card">
-                <div class="card-header">
-                  <center>Abastecimiento de agua</center>
-                </div>
-                <div class="card-text" style="padding: 7px;">
-                  <label for="exampleInputEmail1" class="form-label">Regadera</label>
-                  <div style="display: flex; align-items: center;">
-                    <input type="number" class="form-control" placeholder="Ingrese tiempo de baño" min="5" max="30" style="margin-right: 5px;" />
-                    <span>min</span>
+              <div class="col-md-10">
+                <div class="card">
+                  <div class="card-header">
+                    <center>Alarma Tinaco</center>
                   </div>
-                </div>
-                <button type="button" class="btn btn-outline-primary m-1">Iniciar</button>
-              </div>
-            </div>
-            <div class="col-md-4">
-              <div class="card">
-                <div class="card-header">Featured</div>
-                <div class="card-body">
-                  <h5 class="card-title">Special title treatment</h5>
-                  <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                  <a href="#" class="btn btn-primary">Go somewhere</a>
+                  <button id="encendenrBtn" type="button" class="btn btn-secondary m-2">Encender</button>
+                  <button type="apagarBtn" class="btn btn-warning m-2">Apagar</button>
                 </div>
               </div>
+              <div class="col-md-10">
+                <div class="card">
+                  <div class="card-header">
+                    <center>Seguridad de la tapa</center>
+                  </div>
+                  <button id="encendenrBtn" type="button" class="btn btn-success m-2">Abierto</button>
+                  <button type="apagarBtn" class="btn btn-danger m-2">Cerrado</button>
+                </div>
+              </div>
+              <div class="col-md-10">
+                <div class="card">
+                  <div class="card-header">
+                    <center>Abastecimiento de agua</center>
+                  </div>
+                  <div class="card-text" style="padding: 7px;">
+                    <label for="exampleInputEmail1" class="form-label">Regadera</label>
+                    <div style="display: flex; align-items: center;">
+                      <input type="number" class="form-control" placeholder="Ingrese tiempo de baño" min="5" max="30" style="margin-right: 5px;" />
+                      <span>min</span>
+                    </div>
+                  </div>
+                  <button type="button" class="btn btn-primary m-1">Iniciar</button>
+                </div>
+              </div>
             </div>
-            <div class="col-md-4">
+            <div class="col-md-5">
               <div class="card">
-                <div class="card-header">Featured</div>
+                <div class="card-header">
+                  <center>Nivel Agua</center>
+                </div>
                 <div class="card-body">
-                  <h5 class="card-title">Special title treatment</h5>
-                  <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                  <a href="#" class="btn btn-primary">Go somewhere</a>
+                  <center>
+                    <p id="mensaje"></p>
+                  </center>
+                  <div class="container" style="justify-content: center;">
+                    <div class="chart">
+                      <div class="cylinder" id="tinaco" style="background-color: #3DD9FF;"></div>
+                      <p class="value" id="tinaco-value">Tinaco: 0</p>
+                    </div>
+
+                    <div class="chart">
+                      <div class="cylinder" id="cisterna" style="background-color: #34BEFF;"></div>
+                      <p class="value" id="cisterna-value">Cisterna: 1200</p>
+                    </div>
+                  </div>
+                  <div class="row" style="margin-top: 25px;">
+                    <center>
+                      <button onclick="iniciarSimulacion()" id="encendenrBtn" type="button" class="btn btn-primary m-2">Iniciar</button>
+                      <button onclick="detenerSimulacion()" type="apagarBtn" class="btn btn-warning m-2">Detener</button>
+                    </center>
+                  </div>
+
+                  <script>
+                    const limiteTinaco = 1000
+                    const limiteCisterna = 1200
+                    let valorTinaco = 0
+                    let valorCisterna = 1200
+                    let intervalo
+                    
+                    function iniciarSimulacion() {
+                      intervalo = setInterval(function () {
+                        llenarTinaco()
+                      }, 600) // Llena el tinaco cada segundo
+                    }
+                    function detenerSimulacion() {
+                      clearInterval(intervalo)
+                      mostrarMensaje('Simulación detenida')
+                    }
+                    
+                    function llenarTinaco() {
+                      if (valorTinaco < limiteTinaco) {
+                        valorTinaco += 10 // Puedes ajustar la cantidad de incremento según tus necesidades
+                        actualizarGrafica()
+                      } else {
+                        detenerSimulacion()
+                        mostrarMensaje('¡El tinaco ha alcanzado el límite!')
+                      }
+                    }
+                    
+                    function detenerSimulacion() {
+                      clearInterval(intervalo)
+                    }
+                    
+                    function actualizarGrafica() {
+                      const tinaco = document.getElementById('tinaco')
+                      const cisterna = document.getElementById('cisterna')
+                      const tinacoValue = document.getElementById('tinaco-value')
+                      const cisternaValue = document.getElementById('cisterna-value')
+                    
+                      const porcentajeTinaco = (valorTinaco / limiteTinaco) * 100
+                      const alturaTinaco = porcentajeTinaco * 3 // Multiplicado por 3 para ajustar visualmente la altura
+                    
+                      tinaco.style.height = `${alturaTinaco}px`
+                      tinacoValue.innerText = `Tinaco: ${valorTinaco}`
+                    
+                      valorCisterna -= 10 // Simula que la cisterna disminuye mientras el tinaco se llena
+                    
+                      const porcentajeCisterna = (valorCisterna / limiteCisterna) * 100
+                      const alturaCisterna = porcentajeCisterna * 3 // Multiplicado por 3 para ajustar visualmente la altura
+                    
+                      cisterna.style.height = `${alturaCisterna}px`
+                      cisternaValue.innerText = `Cisterna: ${valorCisterna}`
+                    
+                      if (valorTinaco === limiteTinaco && valorCisterna === 200) {
+                        detenerSimulacion()
+                        mostrarMensaje('¡El tinaco ha alcanzado el límite y la cisterna está baja!')
+                        alert('¡El nivel de cisterna es bajo!')
+                      }
+                    }
+                    
+                    function mostrarMensaje(mensaje) {
+                      const mensajeElemento = document.getElementById('mensaje')
+                      mensajeElemento.innerText = mensaje
+                    }
+                  </script>
                 </div>
               </div>
             </div>
