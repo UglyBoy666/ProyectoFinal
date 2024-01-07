@@ -2,7 +2,6 @@ from django.db import models
 from django.utils import timezone
 
 
-
 class Estado(models.Model):
     idEstado = models.IntegerField(primary_key=True)
     nombre_estado = models.CharField(max_length=45, unique=True)
