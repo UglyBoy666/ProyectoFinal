@@ -13,7 +13,7 @@ class ModelosTinaco(models.Model):
     idModelos_tinaco = models.IntegerField(primary_key=True)
     Nombre = models.CharField(max_length=45)
     Descripcion = models.CharField(max_length=90)
-    Tamaño_tinaco = models.ForeignKey(TamañoTinaco, on_delete=models.CASCADE)
+    Tamaño_tinaco_idTamaño_tinaco = models.ForeignKey(TamañoTinaco, on_delete=models.CASCADE)
 
 class Modulo(models.Model):
     idModulo = models.IntegerField(primary_key=True)
