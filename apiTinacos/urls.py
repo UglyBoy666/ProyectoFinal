@@ -22,7 +22,7 @@ from api import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.login_view, name='login_view'),
-    path('/registro', views.registro, name='registro'),
+    path('registro/', views.registro, name='registro'),
     path('index/', views.index, name='index'),
     path('home/', views.home, name='home'),
     path('maps/', views.maps, name='maps'),
