@@ -67,6 +67,15 @@ def registro(request):
 
     return render(request, 'authentication-register.html')
 
+def maps(request):
+    return render(request, 'maps.html')
+
+def controls(request):
+    return render(request, 'controls.html')
+
+def home(request):
+    return render(request, 'home.html')
+
 @login_required
 def index(request):
     usuario = request.user

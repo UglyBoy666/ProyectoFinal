@@ -1,0 +1,87 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Modernize Free</title>
+    <link rel="shortcut icon" type="image/png" href="{% static 'images/logos/favicon.png' %}" />
+    <link rel="stylesheet" href="{% static 'css/styles.min.css' %}" />
+  </head>
+
+  <body>
+    <div class="container-fluid">
+      <div class="card">
+        <div class="card-body">
+          <center>
+            <h5 class="card-title fw-semibold mb-4">Controles</h5>
+          </center>
+          <div class="row" style="justify-content: center;">
+            <div class="col-md-5">
+              <div class="card">
+                <div class="card-header">
+                  <center>Alarma Tinaco</center>
+                </div>
+                <button id="encendenrBtn" type="button" class="btn btn-outline-success m-2">Encender</button>
+                <button type="apagarBtn" class="btn btn-outline-danger m-2">Apagar</button>
+              </div>
+            </div>
+            <div class="col-md-5">
+              <div class="card">
+                <div class="card-header">
+                  <center>Seguridad de la tapa</center>
+                </div>
+                <button id="encendenrBtn" type="button" class="btn btn-outline-success m-2">Abierto</button>
+                <button type="apagarBtn" class="btn btn-outline-danger m-2">Cerrado</button>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-5">
+              <div class="card">
+                <div class="card-header">
+                  <center>Abastecimiento de agua</center>
+                </div>
+                <div class="card-text" style="padding: 7px;">
+                  <label for="exampleInputEmail1" class="form-label">Regadera</label>
+                  <div style="display: flex; align-items: center;">
+                    <input type="number" class="form-control" placeholder="Ingrese tiempo de baño" min="5" max="30" style="margin-right: 5px;" />
+                    <span>min</span>
+                  </div>
+                </div>
+                <button type="button" class="btn btn-outline-primary m-1">Iniciar</button>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="card">
+                <div class="card-header">Featured</div>
+                <div class="card-body">
+                  <h5 class="card-title">Special title treatment</h5>
+                  <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                  <a href="#" class="btn btn-primary">Go somewhere</a>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="card">
+                <div class="card-header">Featured</div>
+                <div class="card-body">
+                  <h5 class="card-title">Special title treatment</h5>
+                  <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                  <a href="#" class="btn btn-primary">Go somewhere</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="{% static '../static/libs/jquery/dist/jquery.min.js' %}"></script>
+    <script src="{% static '../static/libs/bootstrap/dist/js/bootstrap.bundle.min.js' %}"></script>
+    <script src="{% static '../static/js/sidebarmenu.js' %}"></script>
+    <script src="{% static '../static/js/app.min.js' %}"></script>
+    <script src="{% static '../static/libs/apexcharts/dist/apexcharts.min.js' %}"></script>
+    <script src="{% static '../static/libs/simplebar/dist/simplebar.js' %}"></script>
+    <script src="{% static '../static/js/dashboard.js' %}"></script>
+  </body>
+</html>

@@ -24,6 +24,9 @@ urlpatterns = [
     path('', views.login_view, name='login_view'),
     path('/registro', views.registro, name='registro'),
     path('index/', views.index, name='index'),
+    path('home/', views.home, name='home'),
+    path('maps/', views.maps, name='maps'),
+    path('controles/', views.controls, name='controls'),
     path('logout/', auth_views.LogoutView.as_view(next_page='login_view'), name='logout'),
 ]
 
