@@ -71,9 +71,9 @@ def cargar_datos():
     Tinaco.objects.bulk_create([
         Tinaco(
             Folio=1, 
-            Nombre='Angel', 
-            Ape_paterno='Andres', 
-            Ape_materno='Mendoza', 
+            Nombre='Angel Andres', 
+            Ape_paterno='Mendoza', 
+            Ape_materno='Agama', 
             Correo='angel58524410@gmail.com', 
             Contraseña='12345678', 
             fecha_de_compras=date(2023, 11, 1),
