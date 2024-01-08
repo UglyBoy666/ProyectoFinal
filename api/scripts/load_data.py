@@ -72,6 +72,7 @@ def cargar_datos():
             ),
         ])
 
+
         SNivelDeAgua.objects.bulk_create([
             SNivelDeAgua(Fecha_y_Hora=timezone.now(), datos_sensor=None, Tinaco_Folio=1, Modulo_idModulo=1),
         ])
